@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image/icon.ico" type="image/x-icon">
+  <title>PORTOKIO</title>
+</head>
+<body>
+    <nav class="main-nav">
+            <a href="#home" class = "home_link">Главная</a>
+            <a href="#about" class = "about_link">О нас</a>
+            <a href="#portfolio" class = "portfolio_link">Портфолио</a>
+            <a href="#profile" class = "profile_link">Личный кабинет</a>
+        </nav>
+    <div>
+        <video id="background-video" autoplay muted loop>
+        <source src="video/purple-night-moon-clouds-moewalls-com.mp4" type="video/mp4">
+</video>
+    </div>
+    <div class = "main_div">
+        
+        <article id="home" class="page-section">
+         <video class="video" autoplay muted loop> 
+        <source src="video/cap.mp4" type="video/mp4">
+        </video>
+        </article>
+
+        <img src="image/Vector 1.png"  class="vector_one">
+        <img src="image/Vector 2.png"  class="vector_two">
+
+
+        <div class="profile_icon">
+        <img src="image/profile.png"  class="go_prof">
+        <a href="authorization.html" class="autoriz_link"></a>
+        </div>
+
+       <div class="enter">
+        <a href="authorization.html" class="autoriz_link">Войти</a>
+        </div>
+
+         <div class="carousel-container" id="carousel">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
+            <img src="image/banner1.png" class="carousel-slide" alt="Баннер 1" draggable="false">
+            <img src="image/banner2.png" class="carousel-slide" alt="Баннер 2" draggable="false">
+            <img src="image/banner3.png" class="carousel-slide" alt="Баннер 3" draggable="false">
+            <img src="image/banner4.png" class="carousel-slide" alt="Баннер 2" draggable="false">
+            <img src="image/banner5.png" class="carousel-slide" alt="Баннер 3" draggable="false">
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+        <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+        </div>
+    </div>  
+    <div>
+        </div>
+
+        <img src="image/PORTOKIO.png" class="main_name">
+        <img src="image/icon.png" class="icon_main">
+      </div>
+
+    <article id="about" class="page-section">
+        </article>
+    <div class = "about_us">
+
+      <img src="image/icon.png"  class="icon_img">
+      <img src="image/PORTOKIO.png" class="port" >
+      <img src="image/name2.png"  class="name2"> 
+      <img src="image/text1.png"  class="text1">
+      <img src="image/image1.png"  class="image_one" id="img1">   
+      <img src="image/image2.png"  class="image_two"id="img2"> 
+      <img src="image/image3.png"  class="image_three" id="img3">  
+      <img src="image/text.png" class="text">
+
+      </div>
+
+
+    <div class = "portfolio_div">
+      <article id="portfolio" class="page-section">
+      </article>
+
+      <img src="image/name3.png" class="name_two">
+      <img src="image/icon.png"  class="icon_two">
+
+      <img src="image/text3.png" class="text_port">
+      <button class="large_button" style="background-image: url('image/button1.png'); background-size: cover; background-position: center;"></button>
+      <button class="mini_one" style="background-image: url('image/button2.png'); background-size: cover; background-position: center;"></button>
+      <button class="mini_two" style="background-image: url('image/button3.png'); background-size: cover; background-position: center;"></button>
+      </div>
+    
+    
+<div class="personal_account">
+
+  <article id="profile" class="page-section">
+    <img src="image/name4.png" class = "name_div">
+
+        <input type="file" id="upload" accept="image/*" style="display: none;">
+    <label for="upload" class="circle_button" title="Загрузить фото"></label>
+
+    <input type="file" id="upload_two" accept="image/*" style="display: none;">
+    <label for="upload_two" class="back_button" title="Загрузить обои"></label>
+
+      <div class="profile_info">
+        <div class="profile_row">
+          <span class="profile_label">Имя:</span>
+          <span class="profile_value">здесь будет ваше имя</span>
+        </div>
+        <div class="profile_row">
+          <span class="profile_label">Вид деятельности:</span>
+          <span class="profile_value">а тут чем вы занимаетесь</span>
+        </div>
+        <div class="profile_row">
+          <span class="profile_label">Стаж работы:</span>
+          <span class="profile_value">сколько вы проработали</span>
+        </div>
+        <div class="profile_row">
+          <span class="profile_label">Контакты:</span>
+          <span class="profile_value"> и как с вами связаться</span>
+        </div>
+        <button class="edit_profile_btn" title="Редактировать профиль">Редактировать</button>
+      </div>
+    </div>
+  </article>
+</div>
+</div>
+
+
+ <script src="index.js"> </script>
+
+</body>
+</html> 

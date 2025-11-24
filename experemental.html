@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Карусель Баннеров</title>
+    <style>
+        .carousel-container {
+            width: 600px;
+            margin: 40px auto;
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            user-select: none;
+        }
+        .carousel-track {
+            display: flex;
+            height: 300px;
+            transition: transform 0.7s cubic-bezier(.39,.8,.54,1);
+            will-change: transform;
+        }
+        .carousel-slide {
+            min-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+            flex: 0 0 100%;
+            user-drag: none;
+            user-select: none;
+            pointer-events: none;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            font-size: 2em;
+            padding: 0 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .carousel-btn:active {
+            background: rgba(0,0,0,0.7);
+        }
+        .carousel-btn.prev {
+            left: 10px;
+        }
+        .carousel-btn.next {
+            right: 10px;
+        }
+        .carousel-dots {
+            text-align: center;
+            margin-top: 15px;
+            position: relative;
+            z-index: 3;
+            user-select: none;
+        }
+        .carousel-dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            outline: none;
+        }
+        .carousel-dot.active {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container" id="carousel">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
+            <img src="image/1a7b3a463ca29e3fb9fdee7003e2e27c.jpg" class="carousel-slide" alt="Баннер 1" draggable="false">
+            <img src="image/1e5e7cca790e5a66311bb3bd0db22474.jpg" class="carousel-slide" alt="Баннер 2" draggable="false">
+            <img src="image/a9b8cf03aafc0ed58b542e03d281dd2f.jpg" class="carousel-slide" alt="Баннер 3" draggable="false">
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+        <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+        </div>
+    </div>
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const slides = Array.from(track.children);
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+        const container = document.getElementById('carousel');
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        let currentIndex = 0;
+        let autoSlideInterval = null;
+        const AUTO_SLIDE_DELAY = 3000;
+
+        // For swipe gesture
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = 0;
+
+        function setSlidePosition(index, animate = true) {
+            if (animate) {
+                track.style.transition = 'transform 0.7s cubic-bezier(.39,.8,.54,1)';
+            } else {
+                track.style.transition = 'none';
+            }
+            currentTranslate = -index * slideWidth;
+            track.style.transform = `translateX(${currentTranslate}px)`;
+
+            slides.forEach((slide, i) => {
+                slide.style.pointerEvents = (i === index) ? "auto" : "none";
+            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            setSlidePosition(currentIndex, true);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            setSlidePosition(currentIndex, true);
+        }
+
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => {
+                nextSlide();
+            }, AUTO_SLIDE_DELAY);
+        }
+        function resetAutoSlide() { startAutoSlide(); }
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                setSlidePosition(currentIndex, true);
+                resetAutoSlide();
+            });
+        });
+
+        // Touch and drag interaction for natural sliding
+        container.addEventListener('mousedown', startDrag);
+        container.addEventListener('touchstart', startDrag);
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = getX(e);
+            prevTranslate = -currentIndex * slideWidth;
+            track.style.transition = 'none';
+            document.body.style.cursor = "grabbing";
+
+            window.addEventListener('mousemove', drag);
+            window.addEventListener('touchmove', drag, { passive: false });
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('touchend', endDrag);
+            clearInterval(autoSlideInterval);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault?.();
+            const x = getX(e);
+            const moveDelta = x - startX;
+            currentTranslate = prevTranslate + moveDelta;
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function endDrag(e) {
+            isDragging = false;
+            document.body.style.cursor = "";
+            const x = getX(e);
+            const movedBy = x - startX;
+            if (Math.abs(movedBy) > slideWidth * 0.15) {
+                if (movedBy < 0 && currentIndex < slides.length - 1) {
+                    currentIndex++;
+                } else if (movedBy > 0 && currentIndex > 0) {
+                    currentIndex--;
+                }
+            }
+            setSlidePosition(currentIndex, true);
+            startAutoSlide();
+
+            window.removeEventListener('mousemove', drag);
+            window.removeEventListener('touchmove', drag);
+            window.removeEventListener('mouseup', endDrag);
+            window.removeEventListener('touchend', endDrag);
+        }
+
+        function getX(e) {
+            if (e.touches) return e.touches[0].clientX;
+            return e.clientX;
+        }
+
+        // Prevent drag ghost images
+        slides.forEach(s => {
+            s.addEventListener('dragstart', e => e.preventDefault());
+        });
+
+        // Init
+        setSlidePosition(0, false);
+        startAutoSlide();
+
+        // Resize support
+        window.addEventListener('resize', () => {
+            // recalc width, set current position
+            setTimeout(() => {
+                setSlidePosition(currentIndex, false);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+
+
+
+

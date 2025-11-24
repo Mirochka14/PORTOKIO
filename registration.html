@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registration.css">
+     <link rel="icon" href="image/icon.ico" type="image/x-icon">
+    <title>Регитсрация</title>
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source src="video/purple-night-moon-clouds-moewalls-com.mp4" type="video/mp4">
+    </video>
+
+    <div class="main">
+        <img src="image/registr.png" class="name" alt="Registration Name">
+        <img src="image/PORTOKIO.png" class="text" alt="PORTOKIO Logo">
+        <img src="image/icon.png" class="icon" alt="Icon">
+
+        <form class="auth-form" id="authForm" autocomplete="off">
+            <div>
+                <label for="name_user">Введите имя:</label>
+                <input type="text" id="name_user" name="name_user" placeholder="Введите имя или придумайте ник">
+            </div>
+            <div>
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required pattern="^\+?\d{10,15}$" placeholder="+7XXXXXXXXXX">
+            </div>
+            <div>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required placeholder="Введите пароль">
+            </div>
+            <div>
+                <label for="password_repeat">Повторите пароль:</label>
+                <input type="password" id="password_repeat" name="password_repeat" required placeholder="Повторите пароль">
+            </div>
+            <button type="submit">Регистрация</button>
+            <div id="error-message" class="error" style="display:none;"></div>
+            <div>
+                <a href="authorization.html" class="link">Есть аккаунт? Войдите!</a>
+            </div>
+        </form>
+    </div>
+       <script src="registration.js"> </script>
+</body>
+</html>

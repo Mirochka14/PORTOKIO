@@ -1,0 +1,98 @@
+body {
+    display: block !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio_div {
+    position: relative;
+    left: 210px; 
+    top: 180px;
+    background-color: #FFFFFF;
+    width: 1506px; 
+    height: 1532px; 
+    border: 1px solid #FFFFFF;
+    border-radius: 25px; 
+    }
+
+.name_two{
+    position: relative;
+    width: 600px;
+    height: auto;
+    box-shadow: 0 0 22px 7px #E1749E, 0 0 60px 16px #E1749E80 !important;
+    border-radius: 25px;
+    left: 750px;
+    bottom: 120px;
+}
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+    background: #000; 
+}
+.main_div {
+    position: relative;
+    left: 210px;
+    top: 50px;
+    background-color: #FFFFFF;
+    width: 1500px; 
+    height: 785px; 
+    border: 1px solid #FFFFFF;
+    border-radius: 25px;    
+    }
+
+
+.main-nav {
+    position: fixed;
+    left: 750px;
+    background: rgba(255,255,255,0.73);
+    border-radius: 1.2em;
+    padding: 0.5em 2em;
+    box-shadow: 0 2px 18px 0 rgba(225,116,158,.11);
+    align-items: center;
+    justify-content: center;
+    gap: 40px; 
+    color:#E1749E;
+    font-size: 1.5em;
+    font-weight:800;
+    text-decoration: none;
+    z-index: 2;
+    }
+a {
+    position: relative;
+    color: #E1749E;
+    text-decoration: none;
+    padding: 0.2em 0.6em;
+    transition: box-shadow 0.35s;
+    border-radius: 0.6em;
+    z-index: 1;
+    }
+
+a::before {
+    display: none !important;
+}
+
+a:hover, a:focus {
+    color: #fff;
+    box-shadow: 0 0 10px 4px #E1749E, 0 0 30px 8px #E1749E80;
+    background: #E1749E;
+    outline: none;
+    transition: box-shadow 0.35s, background 0.15s;
+}
+.icon_two{
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+    width: 8%;
+    height: auto;
+    left: 760px;
+    bottom: 100px;
+}

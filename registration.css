@@ -1,0 +1,157 @@
+        body {
+            display: block !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            position: relative;
+            background-color: #FFFFFF;
+            width: 1500px;
+            height: 900px;
+            border: 1px solid #FFFFFF;
+            border-radius: 25px;
+            left: 200px;
+            top: 100px;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+            background: #000;
+        }
+
+        .name {
+            position: relative;
+            width: 600px;
+            height: auto;
+            box-shadow: 0 0 22px 7px #E1749E, 0 0 60px 16px #E1749E80 !important;
+            border-radius: 25px;
+            left: 100px;
+            bottom: 40px;
+        }
+
+        .text {
+            position: relative;
+            width: 30%;
+            height: auto;
+            left: 250px;
+            top: 10px;
+        }
+
+        .icon {
+            position: relative;
+            width: 6%;
+            height: auto;
+            border-radius: 15px;
+            left: 270px;
+            top: 10px;
+        }
+
+        .auth-form {
+            position: relative;
+            top: 100px;
+            left: 300px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .auth-form label {
+            color: #E1749E;
+            margin-bottom: 5px;
+            font-size: 2rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .auth-form input[type="tel"],
+        .auth-form input[type="password"],
+        .auth-form input[type="text"] {
+            position: relative;
+            width: 1000px;
+            height: 50px;
+            right: 50px;
+            padding: 10px 12px;
+            border: 2px solid #E1749E;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+            background: #964765;
+            color: #E1749E;
+        }
+
+        .auth-form input[type="tel"]:focus,
+        .auth-form input[type="password"]:focus,
+        .auth-form input[type="text"]:focus {
+            border-color: #E1749E;
+            background: #940039;
+        }
+
+        .auth-form button[type="submit"] {
+            position: relative;
+            left: 190px;
+            width: 500px;
+            height: 60px;
+            padding: 10px 0;
+            border: none;
+            border-radius: 20px;
+            background: #E1749E;
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .auth-form button[type="submit"]:hover {
+            background: #c15480;
+        }
+
+        .auth-form .error {
+            color: #E1749E;
+            background: rgba(225, 116, 158, 0.12);
+            border: 1px solid #E1749E;
+            border-radius: 8px;
+            margin-top: 8px;
+            padding: 7px 10px;
+            font-size: 0.98rem;
+            text-align: center;
+        }
+
+        a {
+            position: relative;
+            left: 250px;
+            top: 10px;
+            color: #E1749E;
+            text-decoration: none;
+            padding: 0.2em 0.6em;
+            transition: box-shadow 0.35s;
+            font-size: 2rem;
+            border-radius: 0.6em;
+            z-index: 1;
+        }
+
+        a::before {
+            display: none !important;
+        }
+
+        a:hover,
+        a:focus {
+            color: #fff;
+            box-shadow: 0 0 10px 4px #E1749E, 0 0 30px 8px #E1749E80;
+            background: #E1749E;
+            outline: none;
+            transition: box-shadow 0.35s, background 0.15s;
+        }
